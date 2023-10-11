@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+void tambahNode(Node*& head, int data) {
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->next = head;
+    head = newNode;
+}
+
+void cetakList(Node* node) {
+    while (node != nullptr) {
+        cout << node->data << " -> ";
+        node = node->next;
+    }
+    cout << "nullptr" << endl;
+}
+
+int main() {
+    Node* head = nullptr; 
+
+    tambahNode(head, 3);
+    tambahNode(head, 7);
+    tambahNode(head, 1);
+    tambahNode(head, 9);
+
+    cetakList(head);
+
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    return 0;
+}
